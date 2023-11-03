@@ -1,61 +1,51 @@
-import java.util.GregorianCalendar;
 import java.util.Date;
-//import java.util.Calendar;
+import java.util.Calendar;
 
-// A class named MyDate that represents a date
 public class MyDate {
-  // The data fields year, month, and day
-  private int year, month, day;
+    private int year;
+    private int month;  // 0-based, i.e., 0 for January
+    private int day;
 
-  // A no-arg constructor that creates a MyDate object for the current date
-  MyDate() {
-    // Use the java.util.GregorianCalendar class to get the current date
-    GregorianCalendar calendar = new GregorianCalendar();
-    this.year = calendar.get(GregorianCalendar.YEAR);
-    this.month = calendar.get(GregorianCalendar.MONTH);
-    this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
-  }
+    // No-arg constructor that creates a MyDate object for the current date
+    public MyDate() {
+        Date currentDate = new Date();
+        long currentTime = currentDate.getTime();
+        setDate(currentTime);
+    }
 
-  // A constructor that constructs a MyDate object with a specified elapsed time
-  public MyDate(long elapsedTime) {
-    // Use the java.util.Date class to create a date object from the elapsed time
-    Date date = new Date(elapsedTime);
-    // Use the java.util.Calendar class to set the year, month, and day fields
-    GregorianCalendar calendar = new GregorianCalendar();
-    calendar.setTime(date);
-    this.year = calendar.get(GregorianCalendar.YEAR);
-    this.month = calendar.get(GregorianCalendar.MONTH);
-    this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
-  }
+    // Constructor that constructs a MyDate object with a specified elapsed time
+    // since midnight, January 1, 1970, in milliseconds.
+    public MyDate(long elapsedTime) {
+        setDate(elapsedTime);
+    }
 
-  // A constructor that constructs a MyDate object with the specified year, month, and day
-  public MyDate(int year, int month, int day) {
-    this.year = year;
-    this.month = month;
-    this.day = day;
-  }
+    // Constructor that constructs a MyDate object with the specified year, month, and day
+    public MyDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
 
-  // Three getter methods for the data fields year, month, and day
-  public int getYear() {
-    return this.year;
-  }
+    // Getter method for the year
+    public int getYear() {
+        return year;
+    }
 
-  public int getMonth() {
-    return this.month;
-  }
+    // Getter method for the month
+    public int getMonth() {
+        return month;
+    }
 
-  public int getDay() {
-    return this.day;
-  }
+    // Getter method for the day
+    public int getDay() {
+        return day;
+    }
 
-  // A method named setDate that sets a new date for the object using the elapsed time
-  public void setDate(long elapsedTime) {
-    // Use the same logic as the constructor with the elapsed time parameter
-    Date date = new Date(elapsedTime);
-    GregorianCalendar calendar = new GregorianCalendar();
-    calendar.setTime(date);
-    this.year = calendar.get(GregorianCalendar.YEAR);
-    this.month = calendar.get(GregorianCalendar.MONTH);
-    this.day = calendar.get(GregorianCalendar.DAY_OF_MONTH);
-  }
+    // Method to set a new date for the object using elapsed time
+    public void setDate(long elapsedTime) {
+        Date date = new Date(elapsedTime);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH); 
+        day = calendar.get(Calendar.DAY_OF_MONTH); 
+    } 
 }
